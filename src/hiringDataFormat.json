@@ -1,0 +1,17 @@
+{
+  "collection_name": "Hiring/Job Posting",
+  "job_posting": {
+    "id": 1,
+    "title": "College Professor",
+    "job_description": "As Financial Analyst, you'll responsible for financial planning and analysis. You will analyze business performance, create forecasts, and help the executive team make strategic business decisions through your reports. You will also be responsible for the creation of financial reports and presentations to the board and the public.",
+    "job_status": "open",
+    "job_type": "Full Time",
+    "minimum_experience": "experienced",
+    "minimum_education": "Bachelor of Science in Computer Science",
+    "location": {
+      "city": "Batangas",
+      "country": "Philippines",
+      "postalCode": 123456
+    }
+  }
+}

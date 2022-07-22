@@ -1,0 +1,28 @@
+{
+  "collection_name": "Employees Format",
+  "employee": {
+    "id": 1,
+    "first_name": "John",
+    "last_name": "Doe",
+    "gender": "Male",
+    "date_of_birth": "1971-12-31",
+    "marital_status": "Divorced",
+    "image": {
+      "medium": "http://images.unsplash.com/photo-150742220532-d6f7c4a9b1?ixlib=rb-1.2.1&q",
+      "large": "http://images.unsplash.com/photo-1507422205"
+    },
+    "location": {
+      "city": "Batangas",
+      "country": "Philippines",
+      "postalCode": 123456
+    },
+    "employee_type": "Full Time",
+    "education": "Bachelor of Science in Computer Science",
+    "hire_date": "2015-12-31",
+    "social_links": {
+      "facebook": "https://www.facebook.com/johndoe",
+      "twitter": "https://twitter.com/johndoe",
+      "linkedin": "https://www.linkedin.com/in/johndoe"
+    }
+  }
+}
