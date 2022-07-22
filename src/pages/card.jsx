@@ -14,6 +14,9 @@ import { makeStyles } from "@mui/material/styles";
 import Grid from '@mui/material/Grid';
 
 
+const capitalizeFirstLetter = ([ first, ...rest ], locale = navigator.language) =>
+  first === undefined ? '' : first.toLocaleUpperCase(locale) + rest.join('')
+
 const HeroCard = ({heroes, closeModal, showModelEdit, refetchQuery}) =>  {
   const matches = useMediaQuery('(max-width:600px)');
 
@@ -45,7 +48,7 @@ const HeroCard = ({heroes, closeModal, showModelEdit, refetchQuery}) =>  {
                       {e.name}
                     </Typography>
                     <Typography variant="body2" style={{ marginBottom: 2}}>
-                       Skills: <b>{e.skills.toString().replace(",", ", ")}</b>
+                       Skills: <b style={{ "text-transform": "capitalize" }}>{e.skills.toString().replace(/,/g, ', ')}</b>
                     </Typography>
                     <Typography variant="body2" color="text.secondary" >
                       {e.description}

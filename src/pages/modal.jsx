@@ -56,7 +56,7 @@ const ModalHeroes = ({ open, closeModal, create, refetchQuery }) => {
         console.group('Value Changed');
         console.log('Value Changed');
         console.log(value);
-        setValue(setValue)
+        setValue(value)
     };
 
    const  handleInputChange = (inputValue) => {
@@ -146,7 +146,7 @@ const ModalHeroes = ({ open, closeModal, create, refetchQuery }) => {
             onChange={handleChange}
             onInputChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            placeholder="add skills and enter..."
+            placeholder="add skills and press enter..."
             value={valueData}
            />
 
