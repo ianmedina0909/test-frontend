@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import CreatableSelect from 'react-select/creatable';
 import Mutation from '../source/mutation'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const components = {
     DropdownIndicator: null,
@@ -95,14 +97,13 @@ const ModalHeroes = ({ open, closeModal, create }) => {
       skills.push(e.value)
     })
 
-
     if(create.length != 0) { 
     Mutation.UpdateHero({
       "id": create._id,
       "content": {...fields, skills: skills}
-  }).then(res => {
+    }).then(res => {
       if(!res.error) {
-        console.log(res)
+        toast(`${res.name} is already Updated!`)
         closeModal()
       } 
     })
@@ -110,6 +111,7 @@ const ModalHeroes = ({ open, closeModal, create }) => {
     Mutation.CreateHero({...fields, skills: skills}).then(res => {
       if(!res.error) {
         console.log(res)
+        toast(`${res.name} is already created!`)
         closeModal()
       } 
     })
@@ -155,6 +157,9 @@ const ModalHeroes = ({ open, closeModal, create }) => {
             value={fields && fields.description}
             onChange={handleInputChangeText}
             defaultValue=""
+            inputProps={{
+              maxLength: 150,
+            }}
             sx={{ width: 1 }}
             />  
 

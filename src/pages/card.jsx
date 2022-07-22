@@ -9,8 +9,12 @@ import CardActions from '@mui/material/CardActions';
 import Mutation from '../source/mutation'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { makeStyles } from "@mui/material/styles";
 
 const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
+  const matches = useMediaQuery('(min-width:1200px)');
+
   const handelDeleteHeroes = (event) => {
     let id = event.target.id
     Mutation.RemoveHero({id: id}).then(res => {
@@ -25,7 +29,7 @@ const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
         {
            heroes ? heroes.map((e) => (
                 <Card onClick={(event) => showModelEdit((event, e))} 
-                    style={{ width: '23.2%',  display: 'inline-block', marginLeft: 20}}
+                    style={matches ? { width: '23.2%',  display: 'inline-block', marginLeft: 20} : { display: 'inline-block', marginLeft: 20}}
                     key={e._id}>
                 <CardActionArea>
                   <CardMedia
@@ -41,14 +45,13 @@ const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
                     <Typography variant="body2" style={{ marginBottom: 2}}>
                        Skills: <b>{e.skills.toString().replace(",", ", ")}</b>
                     </Typography>
-                    <Typography variant="body2" style={{ height:"150px" }} color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" style={{heigth: "100px"}}>
                       {e.description}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
                   <Button size="small" id={e._id} onClick={handelDeleteHeroes}>Delete</Button>
-                  <Button size="small">Learn More</Button>
                 </CardActions>
                 <ToastContainer />
               </Card>
