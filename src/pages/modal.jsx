@@ -48,7 +48,7 @@ const ModalHeroes = ({ open, closeModal, create }) => {
          setValue(newSkills)
       } else {
         setValue([])
-        setFields({})
+        setFields({ name: "", description: ""})
       }
     }, [create]);
 
@@ -130,7 +130,7 @@ const ModalHeroes = ({ open, closeModal, create }) => {
             component="form"
         >
           <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom: 20}}>
-           {create ?   "Update Hero" : "Create Hero"} 
+           {create.length != 0 ?   "Update Hero" : "Create Hero"} 
           </Typography>
 
           <TextField id="name" label="Name"  onChange={handleInputChangeText} value={fields && fields.name}  sx={{ width: 1 }} style={{marginBottom: 20}} />

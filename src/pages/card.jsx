@@ -29,7 +29,7 @@ const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
         {
            heroes ? heroes.map((e) => (
                 <Card onClick={(event) => showModelEdit((event, e))} 
-                    style={matches ? { width: '23.2%',  display: 'inline-block', marginLeft: 20} : { display: 'inline-block', marginLeft: 20}}
+                    style={matches ? { width: '23.2%',  display: 'inline-block', marginLeft: 20} : { display: 'inline-block', marginLeft: 20 , marginBottom: 20}}
                     key={e._id}>
                 <CardActionArea>
                   <CardMedia
@@ -45,7 +45,7 @@ const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
                     <Typography variant="body2" style={{ marginBottom: 2}}>
                        Skills: <b>{e.skills.toString().replace(",", ", ")}</b>
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" style={{height: "100px"}}>
+                    <Typography variant="body2" color="text.secondary" >
                       {e.description}
                     </Typography>
                   </CardContent>
