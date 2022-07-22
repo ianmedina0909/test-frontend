@@ -45,7 +45,7 @@ const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
                     <Typography variant="body2" style={{ marginBottom: 2}}>
                        Skills: <b>{e.skills.toString().replace(",", ", ")}</b>
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" style={{heigth: "100px"}}>
+                    <Typography variant="body2" color="text.secondary" style={{height: "100px"}}>
                       {e.description}
                     </Typography>
                   </CardContent>
