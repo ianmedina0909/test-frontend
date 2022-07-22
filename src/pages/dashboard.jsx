@@ -20,7 +20,7 @@ const darkTheme = createTheme({
 
 const Dashboard = () =>  {
   const [heroes, setHeroes] = useState();
-  const [create, setData] = useState(false);
+  const [create, setData] = useState([]);
   const [open, setOpen] = useState(false);
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -38,7 +38,7 @@ const Dashboard = () =>  {
     if(open) {
       setOpen(false)
     }else {
-      setData(null)
+      setData([])
       setOpen(true)
     }
   }
@@ -52,6 +52,7 @@ const Dashboard = () =>  {
     setOpen(true)
   }
 
+  console.log(create)
   return (
     <Box sx={{ flexGrow: 'flex' }} style={{ width: "80%", margin: 'auto', paddingTop: 20}}>
       <ThemeProvider theme={darkTheme}>

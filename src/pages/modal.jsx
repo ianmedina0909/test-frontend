@@ -26,17 +26,29 @@ const style = {
 
 const ModalHeroes = ({ open, closeModal, create }) => {
 
-    console.log(create)
-
     const [selectedOption, setSelectedOption] = useState();
     const [valueData, setValue] = useState();
     const [input, setInput] = useState();
     const [fields, setFields] = useState()
 
+   console.log(create)
     useEffect(() => {
       // Update the document title using the browser API
-    
-    });
+      if(create.length != 0) {
+        console.log(create)
+        let newSkills = []
+        for (var i = 0; i < create.skills.length; i++) {
+          console.log(create.skills[i]);
+          newSkills.push({value: create.skills[i], label: create.skills[i]})
+          //Do something
+         }
+         setFields({name: create.name, description:create.description })
+         setValue(newSkills)
+      } else {
+        setValue([])
+        setFields({})
+      }
+    }, [create]);
 
    const handleChange = ( value, actionMeta) => {
         console.group('Value Changed');
@@ -83,6 +95,18 @@ const ModalHeroes = ({ open, closeModal, create }) => {
       skills.push(e.value)
     })
 
+
+    if(create.length != 0) { 
+    Mutation.UpdateHero({
+      "id": create._id,
+      "content": {...fields, skills: skills}
+  }).then(res => {
+      if(!res.error) {
+        console.log(res)
+        closeModal()
+      } 
+    })
+    } else 
     Mutation.CreateHero({...fields, skills: skills}).then(res => {
       if(!res.error) {
         console.log(res)
@@ -107,7 +131,7 @@ const ModalHeroes = ({ open, closeModal, create }) => {
            {create ?   "Update Hero" : "Create Hero"} 
           </Typography>
 
-          <TextField id="name" label="Name" variant="standard" onChange={handleInputChangeText} value={fields && fields.name}  sx={{ width: 1 }} style={{marginBottom: 20}} />
+          <TextField id="name" label="Name"  onChange={handleInputChangeText} value={fields && fields.name}  sx={{ width: 1 }} style={{marginBottom: 20}} />
 
           <CreatableSelect
             components={components}
@@ -131,7 +155,6 @@ const ModalHeroes = ({ open, closeModal, create }) => {
             value={fields && fields.description}
             onChange={handleInputChangeText}
             defaultValue=""
-            variant="standard"
             sx={{ width: 1 }}
             />  
 
