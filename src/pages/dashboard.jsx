@@ -48,7 +48,6 @@ const Dashboard = () =>  {
 
   const closeModal  = () =>  {
       setOpen(false)
-      setHeroes([])
   }
 
   const showModelEdit = (data) => {
