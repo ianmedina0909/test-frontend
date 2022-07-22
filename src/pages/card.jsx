@@ -11,14 +11,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { makeStyles } from "@mui/material/styles";
+import Grid from '@mui/material/Grid';
 
-const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
-  const matches = useMediaQuery('(min-width:1200px)');
+
+const HeroCard = ({heroes, closeModal, showModelEdit, refetchQuery}) =>  {
+  const matches = useMediaQuery('(max-width:600px)');
 
   const handelDeleteHeroes = (event) => {
     let id = event.target.id
     Mutation.RemoveHero({id: id}).then(res => {
       if(!res.error) {
+        refetchQuery()
         toast(`${res.name} is already Deleted!`)
       } 
     })
@@ -28,9 +31,8 @@ const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
       <>
         {
            heroes ? heroes.map((e) => (
-                <Card onClick={(event) => showModelEdit((event, e))} 
-                    style={matches ? { width: '23.2%',  display: 'inline-block', marginLeft: 20} : { display: 'inline-block', marginLeft: 20 , marginBottom: 20}}
-                    key={e._id}>
+            <Grid item xs={matches ? 12 : 6 } md={matches ? 12 : 3} key={e._id}>
+                <Card  style={ { width: '100%',  display: 'inline-block'}} >
                 <CardActionArea>
                   <CardMedia
                     component="img"
@@ -52,9 +54,11 @@ const HeroCard = ({heroes, closeModal, showModelEdit}) =>  {
                 </CardActionArea>
                 <CardActions>
                   <Button size="small" id={e._id} onClick={handelDeleteHeroes}>Delete</Button>
+                  <Button size="small"  onClick={(event) => showModelEdit((event, e))} >Update</Button>
                 </CardActions>
                 <ToastContainer />
               </Card>
+              </Grid>
            )) : ""
         }
         </>

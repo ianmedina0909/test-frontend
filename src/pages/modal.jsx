@@ -26,7 +26,7 @@ const style = {
 };
 
 
-const ModalHeroes = ({ open, closeModal, create }) => {
+const ModalHeroes = ({ open, closeModal, create, refetchQuery }) => {
 
     const [selectedOption, setSelectedOption] = useState();
     const [valueData, setValue] = useState();
@@ -103,6 +103,7 @@ const ModalHeroes = ({ open, closeModal, create }) => {
       "content": {...fields, skills: skills}
     }).then(res => {
       if(!res.error) {
+        refetchQuery()
         toast(`${res.name} is already Updated!`)
         closeModal()
       } 
@@ -110,6 +111,7 @@ const ModalHeroes = ({ open, closeModal, create }) => {
     } else 
     Mutation.CreateHero({...fields, skills: skills}).then(res => {
       if(!res.error) {
+        refetchQuery()
         console.log(res)
         toast(`${res.name} is already created!`)
         closeModal()
